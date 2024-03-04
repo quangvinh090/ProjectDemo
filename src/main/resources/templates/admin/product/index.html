@@ -1,0 +1,67 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/layoutadmin :: content('Prodduct', ~{this :: div})}">
+
+<head>
+	<title>Product</title>
+</head>
+
+<body>
+<div class="content-wrapper">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-header">
+						<h3 class="card-title">DataTable with minimal features & hover style</h3>
+					</div>
+					<!-- /.card-header -->
+					<div class="card-body">
+						<table id="example2" class="table table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>Image</th>
+									<th>Name</th>
+									<th>Price($)</th>
+									<th>Status</th>
+									<th>Description</th>
+									<th>Category</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="product : ${products}">
+									<td><img th:src="@{'/assets/admin/images/' + ${product.picture}}" width="90" height="90"></td>
+									<td><a th:href="@{'/admin/product/detail/' + ${product.id}}"  th:text="${product.name}"></a></td>
+									<td th:text="${product.price}"></td>
+									<td th:text="${product.status}"></td>
+									<td th:text="${product.description}"></td>
+									<td th:text="${product.category.name}"></td>
+									<td>
+										<a th:href="@{'/admin/product/edit/' + ${product.id}}">Edit</a>
+										<a th:href="@{'/admin/product/delete/' + ${product.id}}" onclick="return confirm('Are you Sure?')">Delete</a>
+									</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th>Image</th>
+									<th>Name</th>
+									<th>Price</th>
+									<th>Status</th>
+									<th>Decription</th>
+									<th>Category</th>
+									<th>Action</th>
+									
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+					<!-- /.card-body -->
+				</div>
+				<!-- /.card -->
+			</div>
+			<!-- /.col -->
+		</div>
+		<!-- /.row -->
+	</div>
+</div>
+</html>
